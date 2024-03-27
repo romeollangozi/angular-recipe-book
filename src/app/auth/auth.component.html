@@ -1,0 +1,62 @@
+  <ng-template appPlaceholder></ng-template>
+<div class="row">
+  <!-- <div class="alert alert-danger alert-dismissible" role="alert" *ngIf="error">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="onErrorClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Error!</strong> {{ error }}
+  </div> -->
+  <!-- <app-alert
+    [message]="error"
+    *ngIf="error"
+    (closed)="error = null"
+  ></app-alert> -->
+  <app-loading-spinner *ngIf="isLoading; else form"></app-loading-spinner>
+  <ng-template #form>
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            ngModel
+            required
+            email
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            name="password"
+            ngModel
+            required
+            minlength="6"
+          />
+        </div>
+        <div>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!authForm.valid"
+          >
+            {{ isLoginMode ? "Login" : "Sign Up" }}
+          </button>
+          |
+          <button
+            class="btn btn-primary"
+            (click)="onSwitchMode()"
+            type="button"
+          >
+            Switch to {{ !isLoginMode ? "Login" : "Sign Up" }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>

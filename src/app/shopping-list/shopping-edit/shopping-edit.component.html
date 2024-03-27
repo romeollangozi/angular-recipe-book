@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form #f="ngForm">
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name">Name</label>
+          <input
+            ngModel
+            type="text"
+            id="name"
+            class="form-control"
+            name="name"
+            required
+          />
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="amount">Amount</label>
+          <input
+            type="number"
+            id="amount"
+            class="form-control"
+            ngModel
+            name="amount"
+            min="1"
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            class="btn btn-success"
+            type="submit"
+            style="margin-right: 5px"
+            (click)="onAddIngredient()"
+            [disabled]="f.invalid"
+          >
+            {{ editMode ? "Edit" : "Add" }}
+          </button>
+          <button
+            class="btn btn-danger"
+            type="button"
+            style="margin-right: 5px"
+            (click)="onClickDelete()"
+            *ngIf="editMode"
+          >
+            Delete
+          </button>
+          <button class="btn btn-primary" type="button" (click)="onClear()">
+            Clear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
